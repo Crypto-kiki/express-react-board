@@ -31,7 +31,7 @@ const SignIn: FC = () => {
 
       localStorage.setItem("token", response.data.token);
       console.log(response);
-      // navigate("/");
+      navigate("/");
     } catch (error) {
       console.error(error);
     }

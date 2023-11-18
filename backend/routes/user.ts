@@ -58,7 +58,7 @@ router.post("/", async (req, res) => {
 // 유저 확인
 router.get("/", verifyToken, async (req: any, res) => {
   try {
-    const { account } = req.body;
+    const { account } = req.user;
 
     return res.json({ account });
   } catch (error) {
