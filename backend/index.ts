@@ -1,6 +1,9 @@
 import express, { Express, urlencoded } from "express";
 import cors from "cors";
 
+import userRouter from "./routes/user";
+import authRouter from "./routes/auth";
+
 const app: Express = express();
 const port: Number = +process.env.PORT! | 3010;
 
@@ -13,6 +16,9 @@ app.use(
     credentials: true,
   })
 );
+
+app.use("/user", userRouter);
+app.use("/auth", authRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello Express TS!");

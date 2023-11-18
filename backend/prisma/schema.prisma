@@ -14,4 +14,19 @@ model User {
   updatedAt DateTime @updatedAt
   account   String   @unique
   password  String
+  Post      Post[]
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  content   String
+  // User는 다수의 Post를 소유하고, Post는 하나의 User만 있는 관계임. 다수부분에 작성하면 User부분은 자동으로 post가 작성됨
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+
+  // relationMode = prisma에서는 작성해줘야 함
+  @@index([userId])
 }
